@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 10s
+  scrape_timeout: 10s
+  evaluation_interval: 1m
+  query_log_file: '/var/log/prometheus/prom.log'
+
+scrape_configs:
+  - job_name: prometheus
+    metrics_path: /metrics
+    scrape_interval: 10s
+    honor_labels: false
+    honor_timestamps: true
+    static_configs:
+      - targets: ['localhost:9090']
+        # labels:
+        #   region: 'ireland'
+  - job_name: 'node_exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9100']
+        # labels:
+        #   region: 'ireland'
