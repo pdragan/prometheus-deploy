@@ -1,5 +1,7 @@
 #!/bin/bash
 
+apt update -y && apt upgrade -y
+
 PROMETHEUS_VERSION=2.29.1
 NODE_EXPORTER_VERSION=1.2.2
 
