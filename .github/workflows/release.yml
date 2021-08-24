@@ -22,7 +22,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-  unix:
+  package:
     runs-on: ubuntu-latest
     needs: release
     steps:
@@ -33,10 +33,6 @@ jobs:
         with:
           tagRegex: 'v(.*)'
           tagRegexGroup: 1
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ matrix.go }}
       - name: Build
         run: make
       - name: Upload Release Asset

@@ -7,4 +7,4 @@ zip:
 
 .PHONY: clean
 clean:
-	rm prometheus.zip
+	rm -f prometheus.zip
