@@ -11,10 +11,12 @@ useradd --no-create-home --shell /bin/false prometheus
 useradd --no-create-home --shell /bin/false node_exporter
 
 mkdir /etc/prometheus && mkdir /var/lib/prometheus && mkdir /var/log/prometheus
+mkdir -p /var/lib/node_exporter/textfile_collector
 
 chown -R prometheus:prometheus /etc/prometheus
 chown -R prometheus:prometheus /var/lib/prometheus
 chown -R prometheus:prometheus /var/log/prometheus
+
 
 # Download prometheus server and node_exporter
 
@@ -31,6 +33,8 @@ cp ./prometheus.yml /etc/prometheus/prometheus.yml
 tar xvf node_exporter-$NODE_EXPORTER_VERSION.linux-amd64.tar.gz
 cp node_exporter-$NODE_EXPORTER_VERSION.linux-amd64/node_exporter /usr/local/bin
 chown node_exporter:node_exporter /usr/local/bin/node_exporter
+chown -R node_exporter:node_exporter /var/lib/node_exporter/textfile_collector
+chmod -R 766 /var/lib/node_exporter/textfile_collector
 
 # SystemD Services
 cp ./node_exporter.service /etc/systemd/system/node_exporter.service
